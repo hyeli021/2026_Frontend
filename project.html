@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    .back{
+        background:#fafaff;
+        min-height:100vh;
+        font-family:"Noto Sans KR",sans-serif;
+    }
+        h1{
+        color:#111;
+        font-size:48px;
+        margin-bottom:10px;
+    }
+        .ser{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        }       
+        h2{
+            color:#222;
+            margin-bottom:20px;
+        }
+    
+        .poster {
+            width: 170px;
+            gap: 30px;
+        }
+        #title{
+            width:250px;
+            height:38px;
+            padding:0 15px;
+            border:none;
+            border-radius:20px;
+            font-size:15px;
+        }
+        .movies{
+            display: flex;
+            gap: 30px;
+        }
+        .reviewSection{
+            margin-top:50px;
+        }
+        .movie{
+        background:white;
+        padding:15px;
+        
+        width:190px;
+    }
+        h5 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        }
+        h4 {
+        color: darkred;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        }
+
+        #reviewList{
+    margin-top:20px;
+}
+
+    #reviewList div{
+        background:white;
+        padding:10px;
+        margin-top:10px;
+        border-radius:10px;
+}
+.reviewSection{
+    margin-top:50px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+#movieSelect,
+#rating{
+    height:35px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    padding:5px;
+}
+
+#review{
+    width:300px;
+    height:35px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    resize:none;
+    padding:5px;
+}
+
+#addBtn,
+#offer{
+    background:#771f1f;
+    color:rgb(227, 207, 207);
+    border:none;
+    border-radius:8px;
+    padding:10px 15px;
+    cursor:pointer;
+}
+  
+
+
+    </style>
+</head>
+<body>
+    <div class="back" >
+    <div class="ser">
+    <h1>CineLog</h1>
+    <input type="text" id="title" placeholder="작품명검색">
+    
+    </div>
+    <button id="offer">관리자모드</button>
+    <h2>추천작품</h2>
+    <div class="movies">
+        <div class="movie">
+            <img src = https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXcUa6XY3T8CG7JjcQ-qNryZV0Lyy-M0W2RA&s class="poster"/>
+            <h4>휴민트</h4>
+            <h4>별점:4</h4>
+            <h5>감독: 류승완</h5>
+            <h5>주연: 박정민</h5>
+        </div>
+        <div class="movie">
+            <img src = https://i.namu.wiki/i/Enu4NDEXnLhz4J-BCHZHgEbHjYsAbAUOrFY4svbQiC08DuAePPIpbVNK0-bCSi0gaaMnl5XthXqcdB9g4jII8Q.webp class="poster"/>
+            <h4>발레리나</h4>
+            <h4>별점:5</h4>
+            <h5>감독: 이충형</h5>
+            <h5>주연: 전종서</h5>
+        </div>
+        <div class="movie">
+            <img src = https://i.namu.wiki/i/PXGJ2cONP-eSxkgYaLtPvyKNgsclvpr5f2juKsS6cZ3JQRqT8DqdKq4mqmAe39e95gmYew0iPbWpmQRfiwWdsg.webp class="poster"/>
+            <h4>소울이터</h4>
+            <h4>별점:5</h4>
+            <h5>감독: 이가라시 타쿠야</h5>
+            <h5>주연: 마카</h5>
+        </div>
+        <div class="movie">
+            <img src = https://img4.yna.co.kr/etc/inner/KR/2023/06/20/AKR20230620046900005_01_i_P4.jpg class="poster" />
+            <h4>스파이더맨 어크로스더유니버스</h4>
+            <h4>별점: 5</h4>
+            <h5>감독:호아킴 도스산토스</h5>
+            <h5>주연: 스파이더맨</h5>
+        </div>   
+        <div class="movie">
+            <img src = https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBXz4vJsySAYmUYeAqLTtzG6uIRLwGmGJ8A1V-n6-2Z7mFPkBVI_2w7Co&s class="poster" />
+            <h4>하이재킹</h4>
+            <h4>별점: 3</h4>
+            <h5>감독: 김성한</h5>
+            <h5>주연: 하정우</h5>
+        </div>
+    </div>
+    
+
+
+<div class="reviewSection">
+
+    <select id="movieSelect">
+        <option value="">작품 선택</option>
+        <option>휴민트</option>
+        <option>발레리나</option>
+        <option>소울이터</option>
+        <option>스파이더맨 어크로스 더 유니버스</option>
+        <option>하이재킹</option>
+    </select>
+
+    <input type="number" id="rating" min="1" max="5" placeholder="평점">
+
+    <textarea id="review" placeholder="감상평"></textarea>
+
+    <button id="addBtn">리뷰 등록</button>
+
+</div>
+
+<div id="reviewList"></div>
+
+
+<script>
+    const offer = document.getElementById("offer");
+    const addBtn = document.getElementById("addBtn");
+    const reviewList = document.getElementById("reviewList");
+        
+
+    offer.addEventListener('click',() =>{
+
+    })
+
+    addBtn.addEventListener("click", () => {
+
+    const movieTitle =
+    document.getElementById("movieSelect").value;
+
+    const rating =
+    document.getElementById("rating").value;
+
+    const review =
+    document.getElementById("review").value;
+
+    if(movieTitle === ""){
+        alert("작품을 선택하세요.");
+        return;
+    }
+
+    if(rating === "" || review === ""){
+        alert("평점과 감상평을 입력하세요.");
+        return;
+    }
+
+    const reviewBox = document.createElement("div");
+
+    reviewBox.innerHTML = `
+        <h4>${movieTitle}</h4>
+        <h5>⭐ ${rating}점</h5>
+
+        <button class="showBtn">
+            감상평 보기
+        </button>
+
+        <p class="reviewText"
+        style="display:none;">
+            ${review}
+        </p>
+        <hr>
+    `;
+
+    reviewList.appendChild(reviewBox);
+
+    const showBtn =
+    reviewBox.querySelector(".showBtn");
+
+    const reviewText =
+    reviewBox.querySelector(".reviewText");
+
+    showBtn.addEventListener("click", () => {
+
+        if(reviewText.style.display === "none"){
+            reviewText.style.display = "block";
+            showBtn.textContent = "감상평 닫기";
+        }
+        else{
+            reviewText.style.display = "none";
+            showBtn.textContent = "감상평 보기";
+        }
+    });
+
+    document.getElementById("rating").value = "";
+    document.getElementById("review").value = "";
+});
+
+const search = document.getElementById("title");
+
+search.addEventListener("keyup", () => {
+    const keyword = search.value.toLowerCase();
+
+    const movies = document.querySelectorAll(".movie");
+
+    movies.forEach(movie => {
+        const title = movie.querySelector("h4").textContent.toLowerCase();
+
+        if (title.includes(keyword)) {
+            movie.style.display = "block";
+        } else { 
+            movie.style.display = "none";
+        }
+    });
+});
+
+offer.addEventListener("click", () => {
+
+    const title = prompt("작품 제목");
+    const director = prompt("감독");
+    const actor = prompt("주연");
+    const poster = prompt("포스터 이미지 링크");
+
+    if(!title || !director || !actor || !poster){
+        alert("모든 항목을 입력하세요.");
+        return;
+    }
+
+    const movie = document.createElement("div");
+    movie.className = "movie";
+
+    movie.innerHTML = `
+        <img src="${poster}" class="poster">
+        <h4>${title}</h4>
+        <h4>별점:0</h4>
+        <h5>감독: ${director}</h5>
+        <h5>주연: ${actor}</h5>
+    `;
+
+    document.querySelector(".movies").appendChild(movie);
+
+    const option = document.createElement("option");
+    option.textContent = title;
+    document.getElementById("movieSelect").appendChild(option);
+});
+</script>
+
+
+</body>
+</html>
